@@ -15,5 +15,5 @@
 | SaddleBrown| ![#00b48a](https://via.placeholder.com/10/A04000?text=+) #A04000 |
 | MidnightBlue | ![#17202A](https://via.placeholder.com/10/17202A?text=+) #17202A |
 
-- Este es el proyecto final de la diplomatura de FullStack. (Realizar un Ecommerce).
+- Este es el proyecto final de la diplomatura FullStack de ICARO. (Realizar un Ecommerce).
 
