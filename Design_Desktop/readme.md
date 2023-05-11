@@ -1,1 +1,1 @@
-https://www.figma.com/file/v0LrCAAYCtbt4vwad3u5Fl/BOCETOS-PARA-ECOMMERCE?type=design&node-id=0-1&t=bWUaQ3XowiN3qNR5-0
+https://www.figma.com/file/bANyHT9ftNMzp8Rqr5gHiL/NicolasEnciso-Thrasher?type=design&t=jUJszhnamjWphehp-0
