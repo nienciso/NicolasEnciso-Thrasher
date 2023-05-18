@@ -1,0 +1,195 @@
+
+*{  padding: 12px;
+    
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;}
+
+/*  Header  */
+nav{
+    max-height: 300px;
+    justify-content: space-around;
+    float:right;
+}
+
+.menu{
+    background-color: #A04000;
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: flex-start;
+    justify-content: space-between;
+
+}
+
+.menu a{
+    text-decoration: none;
+    color:#000000;
+}
+
+.menu a:hover{
+    color:#441600;
+}
+
+header img{
+    max-width: 150px;
+    border-radius: 100px;
+    float: left;
+}
+
+nav ul li{
+    list-style:none;
+    float:right;
+    gap: 25px;
+    font-size: 20px;
+}
+
+nav ul li a{
+    text-decoration: none;
+    color:#441600;
+    font-weight: bold;
+
+}
+
+nav ul li a:hover{
+    color:#000000;
+}
+
+img{
+    max-width: 100%;
+    border-radius: 20px;
+}
+
+/*  Body  */
+
+body{
+    background-color: #faeee5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    
+    
+}
+body ul li{
+    list-style:none;
+    gap: 25px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: start;
+    align-content: center;
+    font-weight: bold;
+}
+body ul li a{
+    text-decoration: none;
+    color: #000000;
+}
+body ul li a:hover{
+    color:#441600;
+
+}
+body section{
+    display: flex;
+}
+body section a{
+    text-decoration: none;
+    color: #000000;
+}
+
+/*  Catalogo  */
+
+#Catalogo{
+    background-color: #A04000;
+    display:flex;
+    flex-wrap: wrap;
+    align-items: start;
+    align-content: flex-start;
+}
+#Catalogo a:hover{
+        color:#441600;
+}
+div ul li{
+    text-decoration: none;
+    color: #000000;
+}
+div ul li a{
+    list-style:none;
+}
+h1{
+    color:#441600;
+}
+
+/*  Novedades   */
+
+.container_novedades{
+    display:flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+    align-items: start;
+    align-content: flex-start;
+    justify-content: center;
+    text-align: center;
+    margin-top: 100px;
+}
+#novedades img{
+    max-height: 300px;
+}
+
+#novedades h3:hover{
+        color:#441600;
+}
+/*  Footer  */
+
+footer{
+    background-color:#A04000 ;
+    text-align: center;
+    margin-top: 100px;
+
+}
+
+footer ul li{
+    list-style:none;
+    float:left;
+    margin-left: 75px;
+    text-align: center;
+    font-size: 20px;
+    padding: 5px;
+}
+
+
+footer ul li a{
+    text-decoration: none;
+    color:#000000;
+}
+
+/*  Detail_products  */
+
+.detalles_producto img{
+    float:left;
+    width: 600px;
+}
+
+.detalles_producto{
+    float:left;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: start;
+    align-content: center;
+    justify-content: center;
+}
+
+
+button{
+    width: 200px;
+    border-radius: 25px;
+    margin: 25px;
+}
+
+/*Contenedor botton*/
+
+.container_button{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: start;
+    align-content:flex-start;
+    justify-content: center;
+}
