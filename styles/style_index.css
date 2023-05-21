@@ -1,82 +1,57 @@
 
-*{  padding: 12px;
-    
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;}
-
-/*  Header  */
-nav{
-    justify-content: space-around;
-    float:left;
+*{ padding:0px;
+    margin:0px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
+/* navbar  */
 
-header h1{
-    text-align: center;
-    float: center;
-}
-.menu{
+.navbar{
     background-color: #A04000;
     display:flex;
     flex-wrap: wrap;
     flex-direction: column;
-    align-items: center;
-    align-content: center;
-    justify-content:center;
-
+    align-items: start;
+    align-content:center;
 }
 
-.menu a{
-    text-decoration: none;
-    color:#000000;
+.navbar ul li{
+    list-style: none;
+    font-weight: bolder;
+    margin-top: 10px;
+}
+.navbar ul li a{
+    color: #000000;
 }
 
-.menu a:hover{
-    color:#441600;
+.sections_navbar{
+    color: black;
     text-decoration: none;
+}
+
+.sections_navbar a:hover{
+    color: #441600;
     font-size: 1.5rem;
+    text-decoration: none;
+
 }
 
-header img{
-    max-width: 150px;
-    border-radius: 100px;
-    float: left;
+.navbar img{
+    width: 150px;
+    border-radius: 50%;
 }
-
-nav ul li{
-    list-style:none;
-    float:center;
+.sections_navbar{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: start;
+    align-content: flex-start;
     gap: 25px;
-    font-size: 20px;
-}
-
-nav ul li a{
-    text-decoration: none;
-    color:#441600;
-    font-weight: bold;
-
-}
-
-nav ul li a:hover{
-    color:#000000;
-    text-decoration: none;
-    font-size: 1.5rem;
-}
-
-img{
-    max-width: 100%;
-    border-radius: 20px;
+    
 }
 
 /*  Body  */
 
-body{
-    background-color: #faeee5;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    
-    
-}
-body ul li{
+.Inicio ul li{
     list-style:none;
     gap: 25px;
     font-size: 20px;
@@ -87,34 +62,42 @@ body ul li{
     align-content: center;
     font-weight: bold;
 }
-body ul li a{
+.Inicio ul li a{
     text-decoration: none;
     color: #000000;
 }
-body ul li a:hover{
+.Inicio ul li a:hover{
     color:#441600;
 
 }
-body section{
-    display: flex;
-}
-body section a{
+
+.Inicio section a{
     text-decoration: none;
     color: #000000;
+}
+
+/* inicio*/
+.Inicio{
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.Inicio img{
+    width: 100%;
+
+}
+
+.container_inicio{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    align-content: flex-start;
 }
 
 /*  Shop */
 
-.productos_categoria{
-    display:flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    align-items: flex-start;
-    align-content: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
-    
-}
 
 .producto{
     display: flex;
@@ -123,8 +106,20 @@ body section a{
     align-items:start;
     align-content: flex-start;
     gap: 1rem;
+    margin-top: 15px;
+    margin-left: 15px;
 }
 
+.container_shop{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items:start;
+    align-content:flex-start;
+    justify-content: center;
+    margin-top: 20px;
+
+}
 
 /*  Novedades   */
 
@@ -133,8 +128,9 @@ body section a{
     flex-direction:column;
     flex-wrap: wrap;
     align-items: start;
-    align-content: flex-start;
+    align-content:  flex-start;
     justify-content: flex-start;
+    margin-top: 15px;
 }
 
 .container_novedades{
@@ -144,15 +140,20 @@ body section a{
     align-items: center;
     align-content: flex-start;
     justify-content: space-between;
-    margin-top: 50px;
+    margin-top: 15px;
+    gap:25px;
+    margin-left: 15px;
 }
 #novedades img{
-    max-height: 250px;
+    max-height: 200px;
+    border-radius: 25%;
+    margin-top: 15px;
 }
 
 #novedades h3{
         color:#441600;
         text-decoration: none;
+        margin-top:15px;
 }
 
 #novedades a:hover{
@@ -165,8 +166,8 @@ body section a{
 footer{
     background-color:#A04000 ;
     text-align: center;
-    margin-top: 100px;
     float: center;
+    margin-top: 20px;
 
 }
 
@@ -186,7 +187,7 @@ footer ul li a{
 
 footer ul li a:hover{
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 1.5rem;
 }
 
 #Nosotros{
@@ -195,6 +196,10 @@ footer ul li a:hover{
     flex-direction: column;
     align-items: start;
     align-content: flex-start;
+}
+
+#Nosotros a:hover{
+    color: #441600;
 }
 
 .Nosotros_container{
@@ -209,3 +214,39 @@ footer ul li a:hover{
     font-size: 30px;
     color:#441600 ;
 }
+
+
+/*  Media Query */
+
+
+/* navbar */
+@media (min-width: 700px){
+    .navbar{
+        flex-direction: row;
+        align-items: start;
+        align-content: flex-start;
+    }
+ 
+    .menu{
+        flex-direction: row;
+        justify-content: space-between;
+        
+    }
+}
+/* Novedades */
+
+@media (min-width: 700px){
+    .container_novedades{
+        flex-direction: row;
+        align-items: start;
+        align-content: flex-start;
+    }
+    
+    .Novedades{
+        flex-direction: row;
+        align-items: start;
+        align-content: flex-start;
+    }
+}
+
+
