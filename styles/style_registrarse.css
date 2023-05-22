@@ -56,7 +56,7 @@
     flex-direction: column;
     align-items: start;
     align-content: flex-start;
-    width: 400px;
+    width: 100%;
     margin-left: 15px;
     margin-top: 15px;
 }
