@@ -1,0 +1,46 @@
+/* Reset de CSS */
+
+/* 1. Reiniciar márgenes y relleno */
+body,
+h1, h2, h3, h4, h5, h6,
+p,
+ul, ol,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+  padding: 0;
+}
+
+/* 2. Reiniciar estilos de lista */
+ul, ol {
+  list-style: none;
+}
+
+/* 3. Reiniciar estilos de hipervínculos */
+a {
+  text-decoration: none;
+}
+
+/* 4. Reiniciar estilos de encabezados */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+}
+
+/* 5. Reiniciar estilos de elementos de formulario */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* 6. Reiniciar bordes y dimensiones de imágenes */
+img {
+  border-style: none;
+  max-width: 100%;
+  height: auto;
+}
