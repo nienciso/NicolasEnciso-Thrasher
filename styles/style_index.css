@@ -49,6 +49,11 @@
     
 }
 
+.container_busqueda{
+    display: flex;
+    gap: 10px;
+}
+
 /*  Body  */
 
 .Inicio ul li{
