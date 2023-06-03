@@ -85,24 +85,47 @@
     color: #000000;
 }
 
-/* inicio*/
-.Inicio{
-    margin-top: 15px;
-    margin-left: 15px;
-    margin-right: 15px;
-}
+/* Catalogo */
 
-.Inicio img{
-    width: 100%;
-
-}
-
-.container_inicio{
+.container_todo{
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
-    align-content: flex-start;
+    align-content: center;
+    width: 100%;
+    font-size: 15px;
+    gap: 15px;
+}
+
+.container_iconos{
+    color: black;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    gap: 25px;
+    cursor: pointer;
+}
+.container_iconos img{
+    width: 100%;
+    height: 100%;
+    
+}
+
+.container_iconos a{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background-color: #A04000;
+    width: 200px;
+    height: 100px;
+    color:black;
+}
+.container_iconos a:hover{
+    color: black;
 }
 
 /*  Shop */
@@ -120,6 +143,13 @@
     align-items: start;
     align-content: flex-start;
     gap: 15px;
+    margin-left: 15px;
+
+}
+
+.producto img{
+    width: 150px;
+    height: 150px;
 }
 
 
@@ -219,6 +249,19 @@ footer ul li a:hover{
 
 /*  Media Query */
 
+/* catalogo */
+
+@media (min-width:768px){
+    .container_todo{
+        flex-direction: column;
+    }
+
+    .container_iconos{
+        flex-direction: row;
+        width: 700px;
+        justify-content: center;
+    }
+}
 
 /* navbar */
 @media (min-width: 768px){
