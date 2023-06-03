@@ -51,6 +51,10 @@
 
 .container_busqueda{
     display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+    align-content: flex-start;
     gap: 10px;
 }
 
@@ -218,7 +222,7 @@ footer ul li a:hover{
 
 
 /* navbar */
-@media (min-width: 700px){
+@media (min-width: 768px){
     .navbar{
         flex-direction: row;
         align-items: start;

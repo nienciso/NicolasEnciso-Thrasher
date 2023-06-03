@@ -76,7 +76,7 @@
 }
 
 .detalles_producto2 img{
-    width: 100%;
+    width: 50%;
 }
 
 .container_todo ul li{
@@ -141,7 +141,7 @@ footer ul li a:hover{
 
 
 /* navbar */
-@media (min-width: 700px){
+@media (min-width: 768px){
     .navbar{
         flex-direction: row;
         align-items: start;
