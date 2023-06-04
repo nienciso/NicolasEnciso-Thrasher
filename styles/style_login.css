@@ -41,7 +41,7 @@
 }
 .sections_navbar{
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     flex-direction: row;
     align-items: start;
     align-content: flex-start;
@@ -57,9 +57,9 @@
     flex-direction: column;
     align-items: start;
     align-content: start;
-    width:400px;
+    width:100%;
     gap: 15px;
-    margin-left: 50px;
+    margin-left:15px;
 }
 
 .container_login h2{
@@ -72,8 +72,7 @@
     flex-wrap: wrap;
     flex-direction: column;
     align-items: start;
-    align-content: center;
-    width: 100px;
+    align-content:start;
 }
 
 /*  Footer  */
