@@ -134,6 +134,7 @@
     flex-wrap: wrap;
     flex-direction: column;
     gap: 15px;
+    margin-top: 15px;
 }
 
 .producto{
