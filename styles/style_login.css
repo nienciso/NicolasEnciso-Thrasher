@@ -50,21 +50,18 @@
 }
 
 /*  Login */
-
 .container_login{
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    align-items: start;
-    align-content: start;
-    width:100%;
-    gap: 15px;
-    margin-left:15px;
+    align-items: center;
+    align-content: center;
     background-color: #fcad79;
     border-radius: 25px;
-    padding:15px;
     margin-top: 15px;
-    width: 300px;
+    padding:15px;
+    width: 100%;
+    max-width: 400px;
 }
 
 .container_login h2{
@@ -72,12 +69,16 @@
     font-size: 25px;
 }
 
-.container_login form{
+.formulario{
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    align-items: start;
-    align-content:start;
+    align-items: flex-start;
+    align-content:flex-start;
+}
+
+.formulario a{
+    margin-top: 5px;
 }
 
 /*  Footer  */
@@ -87,6 +88,7 @@ footer{
     text-align: center;
     float: center;
     margin-top: 20px;
+    padding-top:2vh;
 }
 
 footer ul li{
@@ -108,33 +110,6 @@ footer ul li a:hover{
     font-size: 1.5rem;
 }
 
-#Nosotros{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    align-items: start;
-    align-content: flex-start;
-}
-
-#Nosotros a:hover{
-    color: #441600;
-}
-
-.Nosotros_container{
-    padding-top:10vh;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    align-items: start;
-    align-content: center;
-}
-
-.Titulo_nosotros{
-    color:#441600 ;
-}
-
-
-
 
 /*  Media Query */
 
@@ -150,6 +125,9 @@ footer ul li a:hover{
     .menu{
         flex-direction: row;
         justify-content: space-between;
-        
+    }
+    .container_login{
+        align-items: center;
+        justify-content: center;
     }
 }
