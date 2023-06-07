@@ -24,9 +24,10 @@
 
 <body>
     <div class="container_register">
-        <h2>Crea una cuenta!</h2>
-        <div class="register">
-        <form action="">
+        <div class="formulario_register">
+            <h2>Crea una cuenta!</h2>
+        <form action="" class="register">
+        <div class="elemento1">
             <label class="formulario" for="">Nombre Completo</label>
             <input class="formulario" type="name"  name="name" id="name" placeholder="Nombre Completo">
             <br>
@@ -45,6 +46,8 @@
             <label class="formulario" for="email">Fecha de nacimiento</label>
             <input class="formulario" type="date" name="date" id="date" placeholder="Fecha de nacimiento">
             <br>
+        </div>
+        <div class="elemento2">
             <label class="formulario" for="imagen">Colocar imagen</label>
             <input class="formulario" type="image" name="imagen" id="imagen">
             <br>
@@ -76,9 +79,10 @@
             <br>
             <input id="condiciones" type="checkbox" name="condiciones" value="condiciones">
             <label for="condiciones">Acepto los <a href="#"> Términos y condiciones </a></label>
-        </form>
+        </div>
         <a href="#" class="btn btn-primary" class="button1">Registrarse</a>
-    </div>
+        </form>
+        </div>
     </div>
     
 </body>

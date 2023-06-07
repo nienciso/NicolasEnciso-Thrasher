@@ -54,12 +54,11 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    align-items: start;
-    align-content:flex-start;
-    width: 200px;
-    max-width: 100%;
+    align-items: center;
+    align-content:center;
     margin-left: 15px;
     margin-top: 15px;
+    max-width: 100%;
 }
 
 .container_register h2{
@@ -69,12 +68,26 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    align-items: start;
-    align-content: start;
+    align-items: center;
+    align-content: center;
     gap: 15px;
+    background-color: #fcad79;
+    padding:15px;
+    border-radius: 25px;
+    width: 100%;
+    max-width: 300px;
 }
 .register label{
     margin-top: 15px;
+    outline: none;
+}
+
+.register input{
+    outline: none;
+    cursor: pointer;
+}
+.register{
+    width: 250px;
 }
 
 /*  Footer  */
@@ -144,7 +157,34 @@ footer ul li a:hover{
         justify-content: space-between;
         
     }
+
+
+    .register{
+       max-width: 100%;
+       display: flex;
+       flex-wrap: wrap;
+       flex-direction: row;
+       justify-content: center;
+    }
     .container_register{
-        width: 100%;
+        flex-direction: row;
+        max-width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .register{
+        width: 850px;
+        align-content: center;
+        align-items: center;
+    }
+    .elemento1{
+        background-color: #A04000;
+        width: 400px;
+        padding: 15px;
+        border-radius: 25px;
+    }
+    .elemento2{
+        width: 400px;
     }
 }
