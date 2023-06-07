@@ -55,18 +55,20 @@
     flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
-    align-content: center;
-    background-color: #fcad79;
-    border-radius: 25px;
-    margin-top: 15px;
-    padding:15px;
-    width: 100%;
-    max-width: 400px;
+    align-content:center;
+
 }
 
 .container_login h2{
     text-align: center;
     font-size: 25px;
+}
+
+.container_formulario{
+    background-color: #fcad79;
+    border-radius: 25px;
+    padding:15px;
+    margin-top: 15px;
 }
 
 .formulario{
@@ -77,18 +79,26 @@
     align-content:flex-start;
 }
 
-.formulario a{
+.container_formulario{
+    background-color: #fcad79;
+    border-radius: 25px;
+    padding:15px;
+    margin-top: 15px;
+}
+
+.container_formulario a{
     margin-top: 5px;
 }
 
 /*  Footer  */
 
 footer{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
     background-color:#A04000 ;
     text-align: center;
     float: center;
-    margin-top: 20px;
-    padding-top:2vh;
 }
 
 footer ul li{
@@ -96,7 +106,6 @@ footer ul li{
     float:center;
     text-align: center;
     font-size: 20px;
-    padding: 5px;
 }
 
 
