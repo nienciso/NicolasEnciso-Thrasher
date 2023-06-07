@@ -93,17 +93,9 @@ body{
     cursor: pointer;
 }
 
-.container_formulario{
-    background-color: #fcad79;
-    border-radius: 25px;
-    padding:15px;
-    margin-top: 15px;
-}
-
 .container_formulario a{
     margin-top: 5px;
 }
-
 /*  Footer  */
 
 footer{
@@ -135,7 +127,9 @@ footer ul li a:hover{
     text-decoration: none;
     font-size: 1.5rem;
 }
-
+#Nosotros a:hover{
+    color: #441600;
+}
 
 /*  Media Query */
 
