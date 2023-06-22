@@ -1,0 +1,18 @@
+{
+  "name": "nicolasenciso-thrasher",
+  "version": "1.0.0",
+  "description": "![Logo](https://www.shutterstock.com/image-vector/skate-shop-sign-creative-typography-260nw-2166083947.jpg)",
+  "main": "app.js",
+  "scripts": {
+    "Dev": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
