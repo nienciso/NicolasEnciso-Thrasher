@@ -23,27 +23,35 @@
     </header>
 
 <body>
+    <% if(errors) { %>
+        <ul>
+          <% errors.forEach(error => {%>
+          <li><%= error.msg %></li>
+          <% }); %>
+        </ul>
+        <% } %>
+        
     <div class="container_register">
         <div class="formulario_register">
             <h2>Crea una cuenta!</h2>
-        <form action="" class="register">
+        <form action="/register" class="register" method="POST">
         <div class="elemento1">
-            <label class="formulario" for="">Nombre Completo</label>
+            <label class="formulario" for="name">Nombre Completo</label>
             <input class="formulario" type="name"  name="name" id="name" placeholder="Nombre Completo">
             <br>
-            <label class="formulario" for="">Nombre Usuario</label>
-            <input class="formulario" type="name" name="name" id="name" placeholder="Nombre usuario">
+            <label class="formulario" for="name_usuario">Nombre Usuario</label>
+            <input class="formulario" type="name" name="name_usuario" id="name_usuario" placeholder="Nombre usuario">
             <br>
-            <label class="formulario" for="">Correo electronico</label>
+            <label class="formulario" for="email">Correo electronico</label>
             <input class="formulario" type="email" name="email" id="email" placeholder="Correo Electronico">
             <br>
-            <label class="formulario" for="">Contraseña</label>
+            <label class="formulario" for="password">Contraseña</label>
             <input class="formulario" type="password" name="password" id="password" placeholder="Contraseña">
             <br>
-            <label class="formulario" for="">Confirmar contraseña</label>
-            <input class="formulario" type="password" name="password" id="password" placeholder="Confirmar contraseña">
+            <label class="formulario" for="password_repeat">Confirmar contraseña</label>
+            <input class="formulario" type="password" name="password_repeat" id="password_repeat" placeholder="Confirmar contraseña">
             <br>
-            <label class="formulario" for="email">Fecha de nacimiento</label>
+            <label class="formulario" for="date">Fecha de nacimiento</label>
             <input class="formulario" type="date" name="date" id="date" placeholder="Fecha de nacimiento">
             <br>
         </div>
@@ -80,7 +88,7 @@
             <input id="condiciones" type="checkbox" name="condiciones" value="condiciones">
             <label for="condiciones">Acepto los <a href="#"> Términos y condiciones </a></label>
         </div>
-        <a href="#" class="btn btn-primary" class="button1">Registrarse</a>
+        <button type="submit" class="btn btn-primary" class="button1">Registrarse</button>
         </form>
         </div>
     </div>

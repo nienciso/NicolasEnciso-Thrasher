@@ -1,28 +1,20 @@
 const express = require('express');
+const indexRoutes = require("./routes/indexRoutes");
 const app = express();
 const PORT = 3000;
 
 app.use(express.static(__dirname + "/public"));
+app.set("view engine", "ejs");
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
-app.get("/index.html", (req,res) =>{
-    res.send("Pagina de index")
-});
 
-app.get("/detail_products.html", (req,res) =>{
-    res.send("Pagina de detalles del producto")
-});
+app.use("/", indexRoutes);
 
-app.get("/cart.html", (req,res) =>{
-    res.send("Pagina de cart")
-});
+app.use("/admin", require("./routes/adminRoutes"));
 
-app.get("/login.html", (req,res) =>{
-    res.send("Pagina de login")
-});
+app.use("/usuarios",require("./routes/usuariosRoutes"));
 
-app.get("/register.html", (req,res) =>{
-    res.send("Pagina de registro")
-});
 
 
 app.listen(PORT, ()=>{

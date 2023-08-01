@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+            
+        <% if(errors) { %>
+            <ul>
+              <% errors.forEach(error => {%>
+              <li><%= error.msg %></li>
+              <% }); %>
+            </ul>
+            <% } %>
+
+        <div class="container_register">
+            <div class="formulario_register">
+                <h2>Registra un producto!</h2>
+            <form action="/productos" class="register" method="POST">
+            <div class="elemento1">
+                <label class="formulario" for="id">id</label>
+                <input class="formulario" type="number" name="id" id="id" placeholder="id">
+                <br>
+                <label class="formulario" for="name">Nombre</label>
+                <input class="formulario" type="name"  name="name" id="name" placeholder="Nombre producto">
+                <br>
+                <label class="formulario" for="descripcion">descripcion</label>
+                <input class="formulario" type="descripcion" name="descripcion" id="descripcion" placeholder="descripcion">
+                <br>
+                <label class="formulario" for="precio">precio</label>
+                <input class="formulario" type="number" name="precio" id="precio" placeholder="Precio">
+                <br>
+
+                <button type="submit" class="btn btn-primary" class="button1">Registrarse</button>
+            </div>
+
+
+</body>
+</html>
