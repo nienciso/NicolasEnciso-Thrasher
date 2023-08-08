@@ -1,6 +1,5 @@
 const fs = require("fs");
 const path = require('path');
-const dataFilePath = path.join(__dirname, '../productos.json');
 
 
 function renderProducto (req,res){
@@ -9,27 +8,41 @@ function renderProducto (req,res){
   
  //no me registra mas de un objeto en json 
 
-  const registrarProducto = (req, res) => {
-    const { id,name, descripcion, precio} = req.body;
-    const registrarNuevo = {
-      id,
-      name,
-      descripcion,
-      precio
-    };
-    fs.writeFileSync(
-      "productos.json",
-      JSON.stringify(registrarNuevo,null,2),
-      "utf-8"
-    );
-   res.send("Nuevo producto agregado con exito");
+ const registrarProducto = (req, res) => {
+  const { id, name, descripcion, precio } = req.body;
+  const registrarNuevo = {
+    id,
+    name,
+    descripcion,
+    precio,
   };
 
-  //encontrar por id hay que arreglar no busca creo que es pq agrega de  a un,sobreescribe
+  const dataFilePath = path.join(__dirname, "../productos.json");
+
+  try {
+    const productos = JSON.parse(fs.readFileSync(dataFilePath, "utf-8"));
+
+    productos.push(registrarNuevo);
+
+    fs.writeFileSync(dataFilePath, JSON.stringify(productos, null, 2), "utf-8");
+
+    res.send("Nuevo producto agregado con éxito");
+  } catch (error) {
+    console.error("Error al agregar el nuevo producto:", error);
+    res.status(500).json({ error: "Error al agregar el nuevo producto." });
+  }
+};
+
+  //encontrar por id 
   function obtenerProductoPorId(req, res) {
     try {
       const idBuscado = parseInt(req.params.id); // Convertimos el parámetro ID a un número entero
+      const dataFilePath = path.join(__dirname, "../productos.json");
+
       const productos = JSON.parse(fs.readFileSync(dataFilePath, 'utf-8'));
+
+
+      
       const productoEncontrado = productos.find((producto) => producto.id === idBuscado);
   
       if (!productoEncontrado) {
