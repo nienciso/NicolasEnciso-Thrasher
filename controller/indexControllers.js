@@ -22,26 +22,12 @@ const renderCart = (req,res) => {
 
 //Logica de register
 
-const registrarNuevo= (req, res) => {
-  const { email, password} = req.body;
-  const nuevoUsuario ={
-    email,
-    password
-  };
-  fs.writeFileSync(
-    "usuarios.json",
-    JSON.stringify(nuevoUsuario,null,2),
-    "utf-8"
-  );
- res.send("Nuevo usuario agregado con exito");
-};
-
 module.exports = {
   renderLogin,
   renderRegister,
   renderIndex,
   renderDetail_Products,
-  renderCart,
-  registrarNuevo
+  renderCart
+
 
 };

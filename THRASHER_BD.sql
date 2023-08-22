@@ -41,3 +41,5 @@ FROM
         JOIN
     categoria ON productos.categoria_id = categoria.id;
     
+    select * from productos; 
+    

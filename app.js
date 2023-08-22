@@ -13,8 +13,6 @@ app.use("/", indexRoutes);
 
 app.use("/admin", require("./routes/adminRoutes"));
 
-app.use("/usuarios",require("./routes/usuariosRoutes"));
-
 
 
 app.listen(PORT, ()=>{

@@ -1,4 +1,38 @@
-{
-  "email": "nienciso2@gmail.com",
-  "password": "33333"
-}
+[
+  {
+    "id": 1,
+    "name": "Nicolás Enciso",
+    "name_usuario": "Nicolás Enciso",
+    "email": "nienciso2@gmail.com",
+    "password": "123123",
+    "password_repeat": "123123",
+    "date": "2023-08-19",
+    "telefono": "092969230",
+    "pais": "pais",
+    "genero": "on"
+  },
+  {
+    "id": 2,
+    "name": "pablito",
+    "name_usuario": "pablito",
+    "email": "pablito@gmail.com",
+    "password": "pablitopto",
+    "password_repeat": "pablitopro",
+    "date": "2023-08-07",
+    "telefono": "100010101",
+    "pais": "pais",
+    "genero": "on"
+  },
+  {
+    "id": 3,
+    "name": "juancito",
+    "name_usuario": "JUANCITO",
+    "email": "juancito@gmail.com",
+    "password": "123123",
+    "password_repeat": "123123",
+    "date": "2023-08-02",
+    "telefono": "123123",
+    "pais": "pais",
+    "genero": "on"
+  }
+]

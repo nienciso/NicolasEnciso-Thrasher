@@ -6,7 +6,6 @@ function renderProducto (req,res){
     res.render("productos", {errors: []});
   };
   
- //no me registra mas de un objeto en json 
 
  const registrarProducto = (req, res) => {
   const { id, name, descripcion, precio } = req.body;
@@ -58,29 +57,64 @@ function renderProducto (req,res){
 //actualizar
 
 
-  function actualizarProducto(req, res) {
-    try {
-      const data = JSON.stringify(req.body, null, 2); // Formateamos el JSON
-      fs.writeFileSync(dataFilePath, data);
-      res.status(200).json({ message: 'JSON actualizado exitosamente.' });
-    } catch (error) {
-      console.error('Error al actualizar el JSON:', error);
-      res.status(500).json({ error: 'Error al actualizar el JSON.' });
+
+function actualizarProducto(req, res) {
+  try {
+    const dataFilePath = path.join(__dirname, "../productos.json");
+
+    const productIdToUpdate = parseInt(req.params.id); 
+
+    const productos = JSON.parse(fs.readFileSync(dataFilePath, 'utf8'));
+
+    const productoIndex = productos.findIndex(producto => producto.id === productIdToUpdate);
+
+    if (productoIndex !== -1) {
+            productos.splice(productoIndex, 1);
+
+      productos.push({ id: productIdToUpdate, ...req.body });
+
+      fs.writeFileSync(dataFilePath, JSON.stringify(productos, null, 2));
+
+      res.status(200).json({ message: 'Producto actualizado exitosamente.' });
+    } else {
+      res.status(404).json({ error: 'Producto no encontrado.' });
     }
-  };
+  } catch (error) {
+    console.error('Error al actualizar el Producto:', error);
+    res.status(500).json({ error: 'Error al actualizar el Producto.' });
+  }
+}
 
   // Eliminar
   
+   
   function eliminarProducto(req, res) {
     try {
-      fs.unlinkSync(dataFilePath);
-      res.status(200).json({ message: 'JSON eliminado exitosamente.' });
-    } catch (error) {
-      console.error('Error al eliminar el JSON:', error);
-      res.status(500).json({ error: 'Error al eliminar el JSON.' });
-    }
-  };
+      const dataFilePath = path.join(__dirname, "../productos.json");
+      const productIdToDelete = parseInt(req.params.id); // Suponemos que el ID del usuario a eliminar se pasa como parámetro en la URL
   
+      // Leer los usuarios actuales del archivo JSON
+      const productos = JSON.parse(fs.readFileSync(dataFilePath, 'utf8'));
+  
+      // Encontrar el índice del usuario a eliminar en base a su ID
+      const productosIndex = productos.findIndex(producto => producto.id === productIdToDelete);
+  
+      if (productosIndex !== -1) {
+        // Eliminar el usuario de la matriz de usuarios por su índice
+        productos.splice(productosIndex, 1);
+  
+        // Escribir la matriz actualizada de usuarios de nuevo en el archivo JSON
+        fs.writeFileSync(dataFilePath, JSON.stringify(productos, null, 2));
+  
+        res.status(200).json({ message: 'Producto eliminado exitosamente.' });
+      } else {
+        res.status(404).json({ error: 'Producto no encontrado.' });
+      }
+    } catch (error) {
+      console.error('Error al eliminar el Producto:', error);
+      res.status(500).json({ error: 'Error al eliminar el Producto.' });
+    }
+  }
 
 
 
