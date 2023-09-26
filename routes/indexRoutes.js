@@ -24,7 +24,8 @@ const {
 const { registrarProducto, renderProducto, actualizarProducto, eliminarProducto, obtenerProductoPorId } = require("../controller/productoControllers");
 const validateProducto = require("../middleware/validateProducto");
 
-const {validateRegister, validateUpdate} = require("../middleware/validateRegister");
+const { validateUsuario} = require("../middleware/validateRegister");
+
 
 const router = express.Router();
 
@@ -43,14 +44,14 @@ router.get("/cart", renderCart);
 router.get("/productos", renderProducto);
 router.post("/productos", validateProducto, registrarProducto);
 router.get("/productos/:id", obtenerProductoPorId);
-router.put("/actualizar-productos/:id", actualizarProducto );
+router.put("/actualizar-productos/:id", validateProducto,actualizarProducto );
 router.delete("/eliminar-productos/:id", eliminarProducto);
 
 //usuarios 
 router.get("/usuarios", renderUsuario);
-router.post("/usuarios", validateRegister,registrarUsuario);
+router.post("/usuarios", validateUsuario,registrarUsuario);
 router.get("/usuarios/:id", obtenerUsuarioPorId);
-router.put("/actualizar-usuarios/:id", actualizarUsuario );
+router.put("/actualizar-usuarios/:id", validateUsuario,actualizarUsuario );
 router.delete("/eliminar-usuarios/:id", eliminarUsuario);
 
 
