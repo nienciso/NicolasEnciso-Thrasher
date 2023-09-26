@@ -1,6 +1,5 @@
 const {body, validationResult} = require("express-validator");
 const fs = require('fs');
-const path = require("path");
 const validateRegister = [
 
     body("name")
@@ -50,44 +49,55 @@ const validateRegister = [
 
 //update
 
+
 const validateUpdate = [
-
+    // Validation rules for updating user data
     body("name")
-    .notEmpty()
-    .withMessage("Debes completar el campo nombre"),
+        .notEmpty()
+        .withMessage("Debes completar el campo nombre"),
     body("name_usuario")
-    .notEmpty()
-    .withMessage("Debes ingresar un nombre de usuario valido"),
+        .notEmpty()
+        .withMessage("Debes ingresar un nombre de usuario válido"),
     body("email")
-    .notEmpty()
-    .withMessage("Debes completar el campo email")
-    .bail()
-    .isEmail()
-    .withMessage("Debes ingresar un email valido"),
+        .notEmpty()
+        .withMessage("Debes completar el campo email")
+        .bail()
+        .isEmail()
+        .withMessage("Debes ingresar un email válido"),
     body("password")
-    .notEmpty()
-    .withMessage("Debes ingresar una contraseña valida"),
+        .notEmpty()
+        .withMessage("Debes ingresar una contraseña válida"),
     body("password_repeat")
-    .notEmpty()
-    .withMessage("Debes confirmar la contraseña"),
+        .notEmpty()
+        .withMessage("Debes confirmar la contraseña"),
     body("date")
-    .notEmpty()
-    .withMessage("Debes ingresar tu fecha de nacimiento"),
+        .notEmpty()
+        .withMessage("Debes ingresar tu fecha de nacimiento"),
     body("telefono")
-    .notEmpty()
-    .withMessage("Debes ingresar un numero de telefono"),
+        .notEmpty()
+        .withMessage("Debes ingresar un número de teléfono"),
     body("pais")
-    .notEmpty()
-    .withMessage("Debes ingresar tu pais de residencia"),
+        .notEmpty()
+        .withMessage("Debes ingresar tu país de residencia"),
     body("genero")
-    .notEmpty()
-    .withMessage("Debes seleccionar tu genero"),
-  // Logica de middleware
-
+        .notEmpty()
+        .withMessage("Debes seleccionar tu género"),
   
+    // Middleware logic for handling validation errors
+    (req, res, next) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.render("", {
+                errors: errors.array(),
+
+            });
+        }
+        next();
+    }
+];
 // exportamos //
 
-module.exports ={ 
+module.exports = { 
     validateRegister,
     validateUpdate
 };

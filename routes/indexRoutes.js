@@ -47,11 +47,11 @@ router.put("/actualizar-productos/:id", actualizarProducto );
 router.delete("/eliminar-productos/:id", eliminarProducto);
 
 //usuarios 
-router.get("/register", renderUsuario);
-router.post("/register", validateRegister,registrarUsuario);
-router.get("/register/:id", obtenerUsuarioPorId);
-router.put("/actualizar-register/:id", validateUpdate, actualizarProducto );
-router.delete("/eliminar-register/:id", eliminarUsuario);
+router.get("/usuarios", renderUsuario);
+router.post("/usuarios", validateRegister,registrarUsuario);
+router.get("/usuarios/:id", obtenerUsuarioPorId);
+router.put("/actualizar-usuarios/:id", actualizarUsuario );
+router.delete("/eliminar-usuarios/:id", eliminarUsuario);
 
 
 // exportando

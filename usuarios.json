@@ -12,20 +12,8 @@
     "genero": "on"
   },
   {
-    "id": 2,
-    "name": "pablito",
-    "name_usuario": "pablito",
-    "email": "pablito@gmail.com",
-    "password": "pablitopto",
-    "password_repeat": "pablitopro",
-    "date": "2023-08-07",
-    "telefono": "100010101",
-    "pais": "pais",
-    "genero": "on"
-  },
-  {
     "id": 3,
-    "name": "juancito",
+    "name": "juancito555",
     "name_usuario": "JUANCITO",
     "email": "juancito@gmail.com",
     "password": "123123",
