@@ -21,11 +21,10 @@ const {
 
 
 //productos
-const { registrarProducto, renderProducto, actualizarProducto, eliminarProducto, obtenerProductoPorId } = require("../controller/productoControllers");
+const {registrarProducto, renderProducto, actualizarProducto, eliminarProducto, obtenerProductoPorId,} = require("../controller/productoControllers");
 const validateProducto = require("../middleware/validateProducto");
 
 const { validateUsuario} = require("../middleware/validateRegister");
-
 
 const router = express.Router();
 
@@ -34,9 +33,10 @@ const router = express.Router();
 // index
 router.get("/login", renderLogin);
 router.post("/login", renderLogin);
-router.get("register",renderRegister)
+router.get("/register",renderRegister)
 router.get("/register", renderUsuario);
-router.get("/", renderIndex);
+router.get("/index" ,renderIndex);
+
 router.get("/detail_products", renderDetail_Products);
 router.get("/cart", renderCart);
 

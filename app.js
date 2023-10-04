@@ -4,8 +4,9 @@ const app = express();
 const PORT = 3000;
 const productos = require("./models").productos;
 
-app.use(express.static(__dirname + "/public"));
+app.use(express.static('public')); 
 app.set("view engine", "ejs");
+
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 

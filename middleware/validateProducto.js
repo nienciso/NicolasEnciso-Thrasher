@@ -4,7 +4,7 @@ const validateProducto = [
     
     //  parametros //
 
-    body("name")
+    body("nombre")
     .notEmpty()
     .withMessage("Debes completar el campo nombre"),
     body("descripcion")

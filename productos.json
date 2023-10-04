@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "id": 1,
+    "nombre": "Tabla Hesh",
+    "descripcion": "Maple canadiense",
+    "precio": "2100"
+  },
+  {
+    "id": 2,
+    "nombre": "Tabla REAL",
+    "descripcion": "Maple canadiense",
+    "precio": "2300"
+  }
+]

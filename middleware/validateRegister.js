@@ -2,10 +2,10 @@ const {body, validationResult} = require("express-validator");
 
 const validateUsuario = [
 
-    body("name")
+    body("nombre")
     .notEmpty()
     .withMessage("Debes completar el campo nombre"),
-    body("name_usuario")
+    body("nombre_usuario")
     .notEmpty()
     .withMessage("Debes ingresar un nombre de usuario valido"),
     body("email")

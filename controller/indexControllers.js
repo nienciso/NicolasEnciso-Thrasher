@@ -1,4 +1,4 @@
-const fs = require("fs");
+
 
 const renderLogin = (req,res) => {
     res.render("login");

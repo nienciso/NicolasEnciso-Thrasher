@@ -1,7 +1,8 @@
 const express = require("express");
-const {renderPerfil} = require("../controller/adminControllers");
+const {renderAdmin, renderProduct} = require("../controller/adminControllers");
 const router = express.Router();
 
-router.get("/perfil", renderPerfil);
+router.get("/admin", renderAdmin);
+router.get("/productos", renderProduct);
 
 module.exports =  router;
