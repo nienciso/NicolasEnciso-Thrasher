@@ -4,8 +4,8 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./styles/style_registrarse.css">
-        <link rel="stylesheet" href="./styles/reset.css">
+        <link rel="stylesheet" href="../styles/style_registrarse.css">
+        <link rel="stylesheet" href="../styles/reset.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
         <title>Thrasher - Registrarse</title>
     </head>
@@ -23,27 +23,39 @@
     </header>
 
 <body>
+    <% if(errors) { %>
+        <ul>
+          <% errors.forEach(error => {%>
+          <li><%= error.msg %></li>
+          <% }); %>
+        </ul>
+        <% } %>
+        
     <div class="container_register">
         <div class="formulario_register">
             <h2>Crea una cuenta!</h2>
-        <form action="/" class="register">
+        <form action="/usuarios" class="register" method="POST">
         <div class="elemento1">
-            <label class="formulario" for="">Nombre Completo</label>
-            <input class="formulario" type="name"  name="name" id="name" placeholder="Nombre Completo">
             <br>
-            <label class="formulario" for="">Nombre Usuario</label>
-            <input class="formulario" type="name" name="name" id="name" placeholder="Nombre usuario">
+            <label class="formulario" for="id">id</label>
+            <input class="formulario" type="id" name="id" id="id" placeholder="id">
             <br>
-            <label class="formulario" for="">Correo electronico</label>
+            <label class="formulario" for="nombre">Nombre Completo</label>
+            <input class="formulario" type="nombre"  name="nombre" id="nombre" placeholder="Nombre Completo">
+            <br>
+            <label class="formulario" for="nombre_usuario">Nombre Usuario</label>
+            <input class="formulario" type="nombre_usuario" name="nombre_usuario" id="nombre_usuario" placeholder="Nombre usuario">
+            <br>
+            <label class="formulario" for="email">Correo electronico</label>
             <input class="formulario" type="email" name="email" id="email" placeholder="Correo Electronico">
             <br>
-            <label class="formulario" for="">Contraseña</label>
+            <label class="formulario" for="password">Contraseña</label>
             <input class="formulario" type="password" name="password" id="password" placeholder="Contraseña">
             <br>
-            <label class="formulario" for="">Confirmar contraseña</label>
-            <input class="formulario" type="password" name="password" id="password" placeholder="Confirmar contraseña">
+            <label class="formulario" for="password_repeat">Confirmar contraseña</label>
+            <input class="formulario" type="password" name="password_repeat" id="password_repeat" placeholder="Confirmar contraseña">
             <br>
-            <label class="formulario" for="email">Fecha de nacimiento</label>
+            <label class="formulario" for="date">Fecha de nacimiento</label>
             <input class="formulario" type="date" name="date" id="date" placeholder="Fecha de nacimiento">
             <br>
         </div>
@@ -80,7 +92,7 @@
             <input id="condiciones" type="checkbox" name="condiciones" value="condiciones">
             <label for="condiciones">Acepto los <a href="#"> Términos y condiciones </a></label>
         </div>
-        <a href="#" class="btn btn-primary" class="button1">Registrarse</a>
+        <button type="submit" class="btn btn-primary" class="button1">Registrarse</button>
         </form>
         </div>
     </div>

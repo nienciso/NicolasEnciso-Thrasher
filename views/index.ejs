@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/style_index.css">
-    <link rel="stylesheet" href="/styles/reset.css">
+    <link rel="stylesheet" href="./styles/style_index.css">
+    <link rel="stylesheet" href="./styles/reset.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <title>Thrasher - Inicio</title>
 </head>
@@ -53,100 +53,53 @@
 <div class="Categorias">
     <h3 id="Tablas">Tablas</h3>
     <div class="producto">
-
-          <div class="card" >
-            <a href="/detail_products.html"><img class="card-img-top" src="https://i.pinimg.com/736x/96/52/2c/96522cd5466960bf704233dc2d0125d8.jpg" alt="Card image cap"></a>
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="/detail_products.html" class="btn btn-primary">Ver Detalles</a>
-              <a href="/cart.html" class="btn btn-primary">Comprar</a>
-            </div>
-          </div>
-
-          <div class="card" >
-            <a href="/detail_products.html"><img class="card-img-top" src="https://i.pinimg.com/736x/96/52/2c/96522cd5466960bf704233dc2d0125d8.jpg" alt="Card image cap"></a>
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="/detail_products.html" class="btn btn-primary">Ver Detalles</a>
-              <a href="/cart.html" class="btn btn-primary">Comprar</a>
-            </div>
-          </div>
-
-          <div class="card" >
-            <a href="/detail_products.html"><img class="card-img-top" src="https://i.pinimg.com/736x/96/52/2c/96522cd5466960bf704233dc2d0125d8.jpg" alt="Card image cap"></a>
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="/detail_products.html" class="btn btn-primary">Ver Detalles</a>
-              <a href="/cart.html" class="btn btn-primary">Comprar</a>
-            </div>
-          </div>
-
-          <div class="card" >
-            <a href="/detail_products.html"><img class="card-img-top" src="https://i.pinimg.com/736x/96/52/2c/96522cd5466960bf704233dc2d0125d8.jpg" alt="Card image cap"></a>
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="/detail_products.html" class="btn btn-primary">Ver Detalles</a>
-              <a href="/cart.html" class="btn btn-primary">Comprar</a>
-            </div>
-          </div>
-
-    </div>
-
+        <% productos.forEach(function(productos) { %>
+          <%- include('partials/productos.ejs', {productos: productos}) %>
+        <% }) %>
+      
+      </div>    
 </div>
+          
+
 
 <div class="Categorias">
     <h3 id="Ruedas">Ruedas</h3>
-    <div class="producto"></div>
+    <div class="producto">
 
+    </div>
 </div>
 
 <div class="Categorias">
     <h3 id="Remeras">Remeras</h3>
     <div class="producto">
-
-      <div class="card" >
-        <a href="/detail_products.html"><img class="card-img-top" src="https://i.pinimg.com/736x/96/52/2c/96522cd5466960bf704233dc2d0125d8.jpg" alt="Card image cap"></a>
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="/detail_products.html" class="btn btn-primary">Ver Detalles</a>
-          <a href="/cart.html" class="btn btn-primary">Comprar</a>
-        </div>
-      </div>
-
-
-      <div class="card" >
-        <a href="/detail_products.html"><img class="card-img-top" src="https://i.pinimg.com/736x/96/52/2c/96522cd5466960bf704233dc2d0125d8.jpg" alt="Card image cap"></a>
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="/detail_products.html" class="btn btn-primary">Ver Detalles</a>
-          <a href="/cart.html" class="btn btn-primary">Comprar</a>
-        </div>
-      </div>
-
+        <% productos.forEach(function(productos) { %>
+          <%- include('partials/productos.ejs', {productos: productos}) %>
+        <% }) %>
 
     </div>
 
 </div>
 <div class="Categorias">
   <h3 id="Pantalones">Pantalones</h3>
-  <div class="producto"></div>
+  <div class="producto">
 
+
+  </div>
 </div>
+
 <div class="Categorias">
   <h3 id="Canguros">Canguros</h3>
-  <div class="producto"></div>
+  <div class="producto">
 
+
+  </div>
 </div>
+
 <div class="Categorias">
   <h3 id="Championes">Championes</h3>
-  <div class="producto"></div>
+  <div class="producto">
 
+  </div>
 </div>
 
 </section>

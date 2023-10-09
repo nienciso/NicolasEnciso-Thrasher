@@ -3,7 +3,6 @@ const {body, validationResult} = require("express-validator");
 const validateProducto = [
     
     //  parametros //
-
     body("nombre")
     .notEmpty()
     .withMessage("Debes completar el campo nombre"),

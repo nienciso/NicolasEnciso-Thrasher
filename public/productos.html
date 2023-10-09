@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/productoRegistrar.css">
-    <link rel="stylesheet" href="../styles/reset.css">
+    <link rel="stylesheet" href="styles/productoRegistrar.css">
+    <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <title>Document</title>
 </head>
@@ -24,12 +24,11 @@
         <div class="container_register">
             <div class="formulario_register">
                 <h2>Registra un producto!</h2>
-            <form action="/productos/agregar-productos" class="register" method="POST" enctype="multipart/form-data" >
+            <form action="/productos" class="register" method="POST">
             <div class="elemento1">
-                <label class="formulario" for="imagen">imagen</label>
-                    <input type="file" id="imagen" name="imagen" placeholder="imagen">
-                  </label>
-                
+                <label class="formulario" for="id">id</label>
+                <br>
+                <input class="formulario" type="number" name="id" id="id" placeholder="id">
                 <br>
                 <label class="formulario" for="nombre">Nombre</label>
                 <input class="formulario" type="nombre"  name="nombre" id="nombre" placeholder="Nombre producto">

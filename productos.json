@@ -1,14 +1,1 @@
-[
-  {
-    "id": 1,
-    "nombre": "Tabla Hesh",
-    "descripcion": "Maple canadiense",
-    "precio": "2100"
-  },
-  {
-    "id": 2,
-    "nombre": "Tabla REAL",
-    "descripcion": "Maple canadiense",
-    "precio": "2300"
-  }
-]
+[{"id":6,"nombre":"Tabla Organiks","descripcion":"maple canadiense","precio":"4500","imagen_url":null},{"id":7,"nombre":"Tabla hesh","descripcion":"maple de roble","precio":"2000","imagen_url":null},{"id":8,"nombre":"Victoria","descripcion":"Rica","precio":"8000","imagen_url":null},{"id":9,"nombre":"VictoriaSecret","descripcion":"maple de huevos","precio":"5000","imagen_url":null},{"id":10,"nombre":"Victoria","descripcion":"maple de roble","precio":"1233","imagen_url":null},{"id":11,"nombre":"Victoria","descripcion":"maple de roble","precio":"1233","imagen_url":null},{"id":12,"nombre":"Victoria","descripcion":"maple de roble","precio":"1233"},{"id":13,"nombre":"Victoria","descripcion":"maple de roble","precio":"1233"},{"id":14,"nombre":"Tabla Organiks","descripcion":"maple canadiense","precio":"233"},{"id":15,"nombre":"Tabla Organiks","descripcion":"maple canadiense","precio":"233","imagen_url":null},{"id":16,"nombre":"Tabla Organiks","descripcion":"maple canadiense","precio":"233","imagen_url":null},{"id":17,"nombre":"Tabla hesh","descripcion":"maple canadiense","precio":"23444","imagen_url":null},{"id":18,"nombre":"Tabla Organiks","descripcion":"maple de roble","precio":"2000","imagen_url":null},{"id":19,"nombre":"Tabla Organiks","descripcion":"maple de roble","precio":"2000","imagen_url":null},{"id":20,"nombre":"Victoria","descripcion":"maple canadiense","precio":"2000","imagen_url":null}]
