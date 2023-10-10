@@ -24,7 +24,7 @@
         <div class="container_register">
             <div class="formulario_register">
                 <h2>Registra un producto!</h2>
-            <form action="/productos/agregar-productos" class="register" method="POST" enctype="multipart/form-data" >
+            <form action="/productos/agregar-productos" class="register" method="POST" enctype="multipart/form-data">
             <div class="elemento1">
                 <label class="formulario" for="imagen">imagen</label>
                     <input type="file" id="imagen" name="imagen" placeholder="imagen">
@@ -32,13 +32,16 @@
                 
                 <br>
                 <label class="formulario" for="nombre">Nombre</label>
-                <input class="formulario" type="nombre"  name="nombre" id="nombre" placeholder="Nombre producto">
+                <input class="formulario" type="nombre"  name="nombre" id="nombre" placeholder="Nombre del producto">
                 <br>
                 <label class="formulario" for="descripcion">descripcion</label>
-                <input class="formulario" type="descripcion" name="descripcion" id="descripcion" placeholder="descripcion">
+                <input class="formulario" type="descripcion" name="descripcion" id="descripcion" placeholder="agregue una descripcion">
+                <br>
+                <label class="formulario" for="categoria">categoria</label>
+                <input class="formulario" type="categoria" name="categoria" id="categoria" placeholder="agregue una categoria">
                 <br>
                 <label class="formulario" for="precio">precio</label>
-                <input class="formulario" type="number" name="precio" id="precio" placeholder="Precio">
+                <input class="formulario" type="number" name="precio" id="precio" placeholder="agregue un Precio">
                 <br>
 
                 <br>

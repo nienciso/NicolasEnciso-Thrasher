@@ -10,7 +10,7 @@ const {
 
 } = require("../controller/indexControllers");
 //  Controllers
-const {getAllProductos} = require("../controller/productoControllers");
+const {getAllProductos, getProductosByCategoria} = require("../controller/productoControllers");
 
 const router = express.Router();
 
@@ -21,6 +21,7 @@ router.get("/login", renderLogin);
 router.get("/register", renderRegister)
 router.get("/index" ,renderIndex);
 router.get("/productos" ,getAllProductos);
+router.get("/productos/categoria/:categoria_id" ,getProductosByCategoria);
 
 router.get("/detail_products", renderDetail_Products);
 router.get("/cart", renderCart);

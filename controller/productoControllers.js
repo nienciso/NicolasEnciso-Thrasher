@@ -10,29 +10,22 @@ function renderProducto (req,res){
   };  
 
 
-
- 
-  const storage = multer.memoryStorage();
-  const upload = multer({ storage: storage });
-  
   const createProduct = (req, res) => {
-    const { nombre, descripcion, precio } = req.body;
+    const { nombre, descripcion, categoria, precio } = req.body;
   
     if (!nombre || !descripcion || !precio) {
       res.status(400).json({ error: "Faltan campos obligatorios" });
       return;
     }
+
   
-    let imagen = null;
-    if (req.file) {
-      imagen = req.file.buffer;
-    }
+    const insertProductQuery = `INSERT INTO productos (nombre, descripcion, categoria_id, precio, imagen) VALUES (?, ?, ?, ?, ?)`;
   
-    const insertProductQuery = `
-      INSERT INTO productos (nombre, descripcion, precio, imagen)
-      VALUES (?, ?, ?, ?)
-    `;
-    const values = [nombre, descripcion, precio, imagen];
+    // Convierte la imagen a un Buffer
+    const imagen = req.file ? req.file.buffer : null;
+    console.log(imagen)
+    const values = [nombre, descripcion, categoria, precio, imagen];
+
     connection.query(insertProductQuery, values, (error, results) => {
       if (error) {
         console.log("Error al insertar producto en la base de datos:", error);
@@ -41,36 +34,21 @@ function renderProducto (req,res){
       }
   
       const id = results.insertId;
-      const imagen_url = req.file ? `${req.protocol}://${req.get('host')}/${req.file.filename}` : null;
-      const product = { id, nombre, descripcion, precio, imagen_url };
+      const product = { id, nombre, descripcion, categoria, precio, imagen};
   
       console.log(`Producto ${product.nombre} agregado con éxito a la base de datos`);
   
-      const productsFilePath = path.join(__dirname, "../productos.json");
-      fs.readFile(productsFilePath, (error, data) => {
-        if (error) {
-          console.error(`Error al leer archivo de productos: ${error.message}`);
-          return;
-        }
-  
-        let products = JSON.parse(data.toString("utf-8"));
-        products.push(product);
-        fs.writeFile(productsFilePath, JSON.stringify(products), (error) => {
-          if (error) {
-            console.error(`Error al escribir archivo de productos: ${error.message}`);
-          }
-        });
-  
-        res.status(201).json({
-          message: "Producto agregado con éxito",
-          product: product,
-        });
+      res.status(201).json({
+        message: "Producto agregado con éxito",
+        product: product,
       });
     });
   };
+
   
   
 
+  
   //encontrar por id 
   function obtenerProductoPorId(req, res) {
     try {
@@ -179,16 +157,44 @@ function actualizarProducto(req, res) {
     }
   }
 
-  const getAllProductos = (req, res) => { 
-    const query = 'SELECT * FROM productos';
-   
-    connection.query(query, (error, results) => { 
+  const getAllProductos = (req, res) => {
+    const query = 'SELECT p.*, c.nombre AS categoria_nombre FROM productos p JOIN categoria c ON p.categoria_id = c.id';
+  
+    connection.query(query, (error, results) => {
+      if (error) {
+        console.log("Error al obtener los productos de la base de datos:", error);
+        res.status(500).json({ error: "Error al obtener los productos de la base de datos" });
+        return;
+      }
+  
+      // Crea un nuevo array con los productos y su URL de imagen
+      const productos = results.map((producto) => {
+        const imagenUrl = producto.imagen ? `data:image/png;base64,${producto.imagen.toString("base64")}` : '';
+        return {
+          id: producto.id,
+          nombre: producto.nombre,
+          descripcion: producto.descripcion,
+          categoria: producto.categoria_id,
+          precio: producto.precio,
+          imagen: imagenUrl,
+        };
+      });
+  
+      res.render('index', { productos });
+    });
+  };
+
+
+   const getProductosByCategoria = (req, res) => {
+    const categoria_id = req.params.categoria_id;
+    const query = 'SELECT * FROM productos WHERE categoria_id = ?';
+  
+    connection.query(query, [categoria_id], (error, results) => {
       if (error) throw error;
-   
-      res.render('index', { productos: results }); 
-    }); 
-   };
-   
+  
+      res.render('index', { productos: results });
+    });
+  };
    
   
 
@@ -200,4 +206,5 @@ function actualizarProducto(req, res) {
     actualizarProducto,
     eliminarProducto,
     getAllProductos,
+    getProductosByCategoria 
 };
