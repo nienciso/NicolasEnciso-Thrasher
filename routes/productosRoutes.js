@@ -18,15 +18,17 @@ const router = express.Router();
   };
 
 //productos
-const {createProduct, renderProducto, actualizarProducto, eliminarProducto, obtenerProductoPorId} = require("../controller/productoControllers");
+const {createProduct, renderProducto, actualizarProducto, eliminarProducto, getProductoById} = require("../controller/productoControllers");
 const validateProducto = require("../middleware/validateProducto");
 
 //ruta productos
 router.get("/agregar-productos", renderProducto);
 router.post("/agregar-productos", multer(multerConfig).single("imagen"), createProduct, validateProducto);
-router.get("/obtener-productos/:id",  obtenerProductoPorId);
+router.get("/productos/:id",  getProductoById);
 router.put("/actualizar-productos/:id", validateProducto,actualizarProducto );
 router.delete("/eliminar-productos/:id", eliminarProducto);
+
+
 
 
 module.exports = router;
