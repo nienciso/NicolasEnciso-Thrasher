@@ -1,10 +1,14 @@
-<div class="card">
-    <% if (producto.imagen) { %>
-      <img src="<%= producto.imagen %>" class="card-img-top" alt="Imagen de <%= producto.nombre %>">
-    <% } %>
-    <div class="card-body">
-      <h5 class="card-title"><%= producto.nombre %></h5>
-      <p class="card-text"><%= producto.descripcion %></p>
-      <p><strong>Precio:</strong> <%= producto.precio %> $</p>
+<div class="detalles_producto2">
+  <% if (imagenBase64) { %>
+    <img src="data:<%= producto.mimetype %>;base64,<%= imagenBase64 %>" />
+  <% } %>
+  <div class="container_todo">
+    <h5 class="card-title"><%= producto.nombre %></h5>
+    <p class="card-text"><%= producto.descripcion %></p>
+    <p><strong>Precio:</strong> <%= producto.precio %> $</p>
+    <div class="buttons">
+      <a href="#" class="btn btn-primary" class="button1">Seguir comprando</a>
+      <a href="#" class="btn btn-primary" class="button2">Agregar al carrito</a>
     </div>
   </div>
+</div>

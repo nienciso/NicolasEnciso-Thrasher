@@ -9,58 +9,45 @@ function renderProducto (req,res){
   };  
 
 
- const createProduct = (req, res) => {
-  const { nombre, descripcion, categoria, precio } = req.body;
-
-  if (!nombre || !descripcion || !precio) {
-    res.status(400).json({ error: "Faltan campos obligatorios" });
-    return;
-  }
-
-  // En lugar de generar el ID manualmente, dejamos que MySQL lo genere automáticamente
-  const insertProductQuery = `INSERT INTO productos (nombre, descripcion, categoria_id, precio, imagen) VALUES (?, ?, ?, ?, ?)`;
-
-  // Convierte la imagen a un Buffer
-  const imagen = req.file ? req.file.buffer : null;
-
-  const values = [nombre, descripcion, categoria, precio, imagen];
-
-  // Inserta el nuevo producto en la base de datos
-  connection.query(insertProductQuery, values, (error, results) => {
-    if (error) {
-      console.log("Error al insertar producto en la base de datos:", error);
-      res.status(500).json({ error: "Error al insertar producto en la base de datos" });
+  const createProduct = (req, res) => {
+    const { nombre, descripcion, categoria, precio } = req.body;
+  
+    if (!nombre || !descripcion || !precio) {
+      res.status(400).json({ error: "Faltan campos obligatorios" });
       return;
     }
-
-    // Obtiene el ID generado automáticamente por MySQL
-    const id = results.insertId;
-
-    console.log(`Producto ${nombre} agregado con éxito a la base de datos con ID ${id}`);
-
-    try {
-      // Obtiene el contenido actual del archivo productos.json
-      const productosJsonPath = path.join(__dirname, '../productos.json');
-      const productosJsonData = fs.readFileSync(productosJsonPath);
-
-      // Parsea el contenido JSON y agrega el nuevo producto
-      const productos = JSON.parse(productosJsonData);
-      productos.push({ id, nombre, descripcion, categoria, precio, imagen });
-
-      // Sobrescribe el archivo productos.json con la información actualizada
-      const productosJsonString = JSON.stringify(productos, null, 2);
-      fs.writeFileSync(productosJsonPath, productosJsonString);
-
-      res.status(201).json({
-        message: "Producto agregado con éxito",
-        product: { id, nombre, descripcion, categoria, precio, hasImage: !!imagen },
+  
+    // En lugar de generar el ID manualmente, dejamos que MySQL lo genere automáticamente
+    const insertProductQuery = `INSERT INTO productos (nombre, descripcion, categoria_id, precio, imagen) VALUES (?, ?, ?, ?, ?)`;
+  
+    // Convierte la imagen a un Buffer
+    const imagen = req.file ? req.file.buffer : null;
+  
+    const values = [nombre, descripcion, categoria, precio, imagen];
+  
+    // Inserta el nuevo producto en la base de datos
+    connection.query(insertProductQuery, values, (error, results) => {
+      if (error) {
+        console.log("Error al insertar producto en la base de datos:", error);
+        res.status(500).json({ error: "Error al insertar producto en la base de datos" });
+        return;
+      }
+  
+      // Obtiene el ID generado automáticamente por MySQL
+      const id = results.insertId;
+  
+      console.log(`Producto ${nombre} agregado con éxito a la base de datos con ID ${id}`);
+  
+      // Renderiza la vista de detalle del nuevo producto recién agregado
+      connection.query("SELECT * FROM productos WHERE id = ?", [id], (error, result) => {
+        if (error) throw error;
+        const producto = result[0];
+        // Convierte la imagen a una cadena base64 para mostrarla en la vista
+        const imagenBase64 = Buffer.from(producto.imagen).toString("base64");
+        res.render("detail_Products.ejs", { producto, imagenBase64 });
       });
-    } catch (error) {
-      console.log("Error al agregar el nuevo producto:", error);
-      res.status(500).json({ error: "Error al agregar el nuevo producto" });
-    }
-  });
-};
+    });
+  };
   
   //encontrar por id 
   const getProductoById = (req, res) => {
@@ -68,7 +55,7 @@ function renderProducto (req,res){
   
     const query = 'SELECT * FROM productos WHERE id = ?';
   
-    connection.query(query, [id], (error, results) => {
+    connection.query(query, [id], (error, results, fields) => {
       if (error) {
         console.log("Error al obtener el producto de la base de datos:", error);
         res.status(500).json({ error: "Error al obtener el producto de la base de datos" });
@@ -86,14 +73,21 @@ function renderProducto (req,res){
   
       console.log(`Detalles del producto ${producto.nombre} (ID ${id}):`, producto);
   
-      // Crea una URL de imagen si el producto tiene una imagen
-      const imagenUrl = producto.imagen ? `data:image/png;base64,${producto.imagen.toString("base64")}` : '';
+      let imagenBase64 = null; // Inicializa imagenBase64 como null
   
-      // Envía los detalles del producto a la vista
-      res.render('detail_Products', {producto: producto});
+      // Si el registro del producto contiene una imagen, la convierte a Base64
+      if (producto.imagen) {
+        imagenBase64 = Buffer.from(producto.imagen, 'binary').toString('base64'); // Convierte los datos de imagen a Base64
+      }
+  
+      // Envía los detalles del producto a la vista, junto con la imagen como Base64
+      res.render('detail_Products', {
+        producto: producto,
+        imagenBase64: imagenBase64
+      });
     });
   };
-  
+
 //actualizar
 
 

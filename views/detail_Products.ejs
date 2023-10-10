@@ -32,7 +32,7 @@
 
     <section>
 <!-- En la vista de detalles del producto (detail_products.ejs) -->
-<%- include('partials/detail_product.ejs', {producto: producto}) %>
+<%- include('partials/detail_product', { producto: producto, imagenBase64: imagenBase64 }) %>
 
 
 <!-- Agrega un botón de "Agregar al carrito" o algo similar si deseas que los usuarios puedan agregar productos al carrito desde aquí -->
