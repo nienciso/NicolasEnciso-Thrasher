@@ -30,7 +30,7 @@ app.get('/', function(req, res) {
   });
 
   // Rutas de autenticación
-app.use('/auth', authRoutes);
+app.use('/', authRoutes);
 
 // Rutas protegidas
 app.get('/dashboard', checkSession, (req, res) => {

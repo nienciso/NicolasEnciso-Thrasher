@@ -12,11 +12,17 @@ const {
     eliminarUsuario
 } = require("../controller/usuarioControllers");
 
-const { getLogin, postLogin, getLogout
+const { getLogin,postLogin, getRegister,
+  postRegister,
+  getLogout
     
-} = require("../controller/usuarioControllers.js");
+} = require("../controller/authController");
 
 //validaciones
+router.get('/register', getRegister);
+
+// Ruta para procesar el formulario de registro
+router.post('/register', postRegister);
 
 const { validateUsuario} = require("../middleware/validateRegister");
 

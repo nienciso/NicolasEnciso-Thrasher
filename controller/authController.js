@@ -8,16 +8,16 @@ const getLogin = (req, res) => {
 
 // Controlador para procesar el formulario de inicio de sesión
 const postLogin = async (req, res) => {
-  const { username, password } = req.body;
+  const { nombre_usuario, password } = req.body;
 
   // Busca el usuario en la base de datos
-  const [rows] = await db.query('SELECT * FROM users WHERE username = ?', [username]);
+  const [rows] = await db.query('SELECT * FROM usuario WHERE nombre_usuario = ?', [nombre_usuario]);
   const user = rows[0];
 
   // Si el usuario existe y la contraseña es correcta
   if (user && await bcrypt.compare(password, user.password)) {
     // Configura la sesión con la información del usuario
-    req.session.user = { id: user.id, username: user.username };
+    req.session.user = { id: user.id, nombre: user.nombre };
     // Redirige al panel de control
     return res.redirect('/dashboard');
   } else {
@@ -33,10 +33,10 @@ const getRegister = (req, res) => {
 
 // Controlador para procesar el formulario de registro
 const postRegister = async (req, res) => {
-  const { username, password } = req.body;
+  const { nombre_usuario, password } = req.body;
 
-  // Verifica que no haya otro usuario registrado con ese username
-  const [rows] = await db.query('SELECT * FROM users WHERE username = ?', [username]);
+  // Verifica que no haya otro usuario registrado con ese nombre de usuario
+  const [rows] = await db.query('SELECT * FROM usuario WHERE nombre_usuario = ?', [nombre_usuario]);
   if (rows.length > 0) {
     return res.render('register', { error: 'El nombre de usuario ya está en uso' });
   }
@@ -46,7 +46,7 @@ const postRegister = async (req, res) => {
   const hashedPassword = await bcrypt.hash(password, salt);
 
   // Registra al usuario en la base de datos
-  await db.query('INSERT INTO users (username, password) VALUES (?, ?)', [username, hashedPassword]);
+  await db.query('INSERT INTO usuario (nombre_usuario, password) VALUES (?, ?)', [nombre_usuario, hashedPassword]);
 
   // Redirige al usuario a la página de inicio de sesión
   return res.redirect('/auth/login');

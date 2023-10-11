@@ -1,6 +1,10 @@
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
-const  connection  = require('./db');
+const connection = require('./db');
+const crypto = require('crypto');
+
+// Genera una cadena secreta aleatoria de 32 bytes
+const secretKey = crypto.randomBytes(32).toString('hex');
 
 const sessionStore = new MySQLStore({
   clearExpired: true,
@@ -10,18 +14,18 @@ const sessionStore = new MySQLStore({
   schema: {
     tableName: 'sessions'
   },
-  secret: '123Thrasher321' // Agrega una cadena secreta aquí
+  secret: secretKey, // Usa la cadena secreta generada
 });
 
 module.exports = {
   middleware: session({
-    secret: 'password',
+    secret: secretKey, // Usa la misma cadena secreta generada
     resave: false,
     saveUninitialized: true,
     store: sessionStore,
   }),
 
-  checkSession: function(req, res, next) {
+  checkSession: function (req, res, next) {
     if (req.session.user) {
       return next();
     } else {
@@ -29,7 +33,7 @@ module.exports = {
     }
   },
 
-  checkAdmin: function(req, res, next) {
+  checkAdmin: function (req, res, next) {
     if (req.session.user && req.session.user.role === 'admin') {
       return next();
     } else {
