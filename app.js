@@ -5,17 +5,27 @@ const productosRoutes = require("./routes/productosRoutes");
 const app = express();
 const PORT = 3000;
 const productos = require("./models").productos;
+const path = require("path");
+const bodyParser = require('body-parser');
+const { connection } = require('./db');
+const session = require('./session');
 
 
 app.set("view engine", "ejs");
 app.set('views',__dirname + '/views' );
 
-app.use(express.static(__dirname + '/public'));
 
+app.use(express.static(path.join(__dirname, 'public'), { type: 'text/javascript' }));
 app.use(express.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(session.middleware);
+
 app.use(express.json());
 
-
+app.get('/', function(req, res) {
+    res.set('Content-Type', 'text/javascript');
+    res.sendFile('/controller/cartControllers.js');
+  });
 
 app.use("/", indexRoutes);
 app.use("/usuarios", usuariosRoutes);

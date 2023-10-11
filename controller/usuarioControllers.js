@@ -5,7 +5,80 @@ const connection = require('../db');
 const { promisify } = require("util");
 const readFileAsync = promisify(fs.readFile);
 const writeFileAsync = promisify(fs.writeFile);
+const bcrypt = require('bcrypt');
 
+//login
+
+const getLogin = (req, res) => {
+  res.render('login');
+};
+
+const postLogin = async (req, res) => {
+  try {
+    const { email, password, role } = req.body;
+
+    const user = await getUserByEmail(email, role);
+
+    if (!user) {
+      return res.status(401).render('login', { error: 'Usuario no encontrado' });
+    }
+
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    if (!passwordMatch) {
+      return res.status(401).render('login', { error: 'Contraseña incorrecta' });
+    }
+
+    req.session.user = user;
+
+    if (user.role === 'admin') {
+      return res.redirect('/admin');
+    }
+
+    res.redirect('/user');
+  } catch (error) {
+    console.error(error);
+    res.status(500).render('login', { error: 'Error de servidor' });
+  }
+};
+
+const getLogout = (req, res) => {
+  // Destruir la sesión del usuario
+  req.session.destroy((err) => {
+    if (err) {
+      console.error(err);
+      // Si se produce un error, enviar una respuesta 500
+      res.status(500).send('Ha ocurrido un error');
+    } else {
+      // Si todo ocurrió sin problemas, redirigir al usuario al inicio de sesión
+      res.redirect('/login');
+    }
+  });
+};
+
+
+
+const getUserByEmail = async (email, role) => {
+  try {
+    const connection = await mysql.createConnection({
+      host: 'localhost',
+      user: 'root',
+      password: 'tu-contraseña',
+      database: 'nombre-de-tu-base-de-datos'
+    });
+
+    const [rows] = await connection.execute('SELECT * FROM usuarios WHERE email = ? AND role = ?', [email, role]);
+
+    connection.end();
+
+    return rows[0];
+  } catch (error) {
+    throw error;
+  }
+};
+
+
+//usuarios
 
 function renderUsuario (req,res){
     res.render("register", {errors: []});
@@ -178,4 +251,7 @@ module.exports = {
   obtenerUsuarioPorId,
   actualizarUsuario,
   eliminarUsuario,
+  getLogin,
+  postLogin,
+  getLogout
 };

@@ -10,6 +10,15 @@
         <title>Thrasher - Inicio</title>
     </head>
     <header>
+  <meta charset="UTF-8">
+  <title>Iniciar sesión</title>
+</head>
+<body>
+  <% if (locals && locals.error) { %>
+    <div style="color: red;">
+      <%= locals.error %>
+    </div>
+  <% } %>
         <div class="navbar">
             <a href="/login.html"><img src="https://w7.pngwing.com/pngs/212/403/png-transparent-thrasher-magazine-alternative-logo.png" alt=""></a>
             <ul>

@@ -213,6 +213,37 @@ function actualizarProducto(req, res) {
     });
   };
    
+//add cart
+
+const addToCart = async (req, res) => {
+  const id = req.params.id; // Obtenemos el ID del producto que se desea agregar al carrito
+
+  try {
+    // Buscamos el producto en la base de datos por su ID
+    const producto = await Producto.findById(id);
+
+    if (!producto) {
+      // Si no encontramos el producto, devolvemos un error 404
+      return res.sendStatus(404);
+    }
+
+    // Verificamos si el producto está en el carrito
+    if (!req.session.cart[id]) {
+      req.session.cart[id] = 1;
+    } else {
+      req.session.cart[id]++;
+    }
+
+    // Redirigimos al usuario a la página del producto
+    res.redirect(`/productos/${id}`);
+
+  } catch (err) {
+    console.log(err);
+    // En caso de error, devolvemos un error 500
+    res.sendStatus(500);
+  }
+};
+
 
   module.exports = {
     renderProducto,
@@ -222,4 +253,5 @@ function actualizarProducto(req, res) {
     eliminarProducto,
     getAllProductos,
     getProductosByCategoria,
+    addToCart
 };

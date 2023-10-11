@@ -12,9 +12,49 @@ const {
     eliminarUsuario
 } = require("../controller/usuarioControllers");
 
+const { getLogin, postLogin, getLogout
+    
+} = require("../controller/usuarioControllers.js");
+
 //validaciones
 
 const { validateUsuario} = require("../middleware/validateRegister");
+
+
+router.get('/user', (req, res) => {
+    if (!req.session.user) {
+      return res.redirect('/login');
+    }
+  
+    if (req.session.user.role !== 'user') {
+      return res.redirect('/login');
+    }
+  
+    res.render('userDashboard');
+  });
+  
+  router.get('/admin', (req, res) => {
+    if (!req.session.user) {
+      return res.redirect('/login');
+    }
+  
+    if (req.session.user.role !== 'admin') {
+      return res.redirect('/login');
+    }
+  
+    res.render('adminDashboard');
+  });
+  
+  router.route('/login')
+    .get(getLogin)
+    .post(postLogin);
+  
+  router.get('/logout', getLogout);
+  
+  module.exports = router;
+
+
+
 
 //usuarios 
 router.get("/agregar-usuarios", renderUsuario);
