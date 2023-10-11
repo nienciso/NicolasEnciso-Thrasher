@@ -1,12 +1,21 @@
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
-const { connection } = require('./db');
+const  connection  = require('./db');
 
-const sessionStore = new MySQLStore({}, connection);
+const sessionStore = new MySQLStore({
+  clearExpired: true,
+  checkExpirationInterval: 900000,
+  expiration: 86400000,
+  connection: connection,
+  schema: {
+    tableName: 'sessions'
+  },
+  secret: '123Thrasher321' // Agrega una cadena secreta aquí
+});
 
 module.exports = {
   middleware: session({
-    secret: 'my-secret-key',
+    secret: 'password',
     resave: false,
     saveUninitialized: true,
     store: sessionStore,

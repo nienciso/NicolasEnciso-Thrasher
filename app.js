@@ -7,8 +7,10 @@ const PORT = 3000;
 const productos = require("./models").productos;
 const path = require("path");
 const bodyParser = require('body-parser');
-const { connection } = require('./db');
 const session = require('./session');
+const authRoutes = require('./routes/authRoutes');
+const {checkSession } = require('./middleware/authmiddleware');
+
 
 
 app.set("view engine", "ejs");
@@ -26,6 +28,16 @@ app.get('/', function(req, res) {
     res.set('Content-Type', 'text/javascript');
     res.sendFile('/controller/cartControllers.js');
   });
+
+  // Rutas de autenticación
+app.use('/auth', authRoutes);
+
+// Rutas protegidas
+app.get('/dashboard', checkSession, (req, res) => {
+  res.render('dashboard', { user: req.session.user });
+});
+
+
 
 app.use("/", indexRoutes);
 app.use("/usuarios", usuariosRoutes);
