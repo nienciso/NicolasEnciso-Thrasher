@@ -12,54 +12,7 @@ const {
     eliminarUsuario
 } = require("../controller/usuarioControllers");
 
-const { getLogin,postLogin, getRegister,
-  postRegister,
-  getLogout
-    
-} = require("../controller/authController");
-
-//validaciones
-router.get('/register', getRegister);
-
-// Ruta para procesar el formulario de registro
-router.post('/register', postRegister);
-
 const { validateUsuario} = require("../middleware/validateRegister");
-
-
-router.get('/user', (req, res) => {
-    if (!req.session.user) {
-      return res.redirect('/login');
-    }
-  
-    if (req.session.user.role !== 'user') {
-      return res.redirect('/login');
-    }
-  
-    res.render('userDashboard');
-  });
-  
-  router.get('/admin', (req, res) => {
-    if (!req.session.user) {
-      return res.redirect('/login');
-    }
-  
-    if (req.session.user.role !== 'admin') {
-      return res.redirect('/login');
-    }
-  
-    res.render('adminDashboard');
-  });
-  
-  router.route('/login')
-    .get(getLogin)
-    .post(postLogin);
-  
-  router.get('/logout', getLogout);
-  
-  module.exports = router;
-
-
 
 
 //usuarios 

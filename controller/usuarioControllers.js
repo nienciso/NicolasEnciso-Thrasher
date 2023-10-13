@@ -13,55 +13,23 @@ function renderUsuario (req,res){
     res.render("register", {errors: []});
   };
   
-
   const registrarUsuario = (req, res) => {
-    const { id, nombre, nombre_usuario, email, password, password_repeat, date, telefono, pais, genero } = req.body;
+    const { nombre, nombre_usuario, email, password, date, telefono, pais, genero } = req.body;
   
-    const registrarNuevo = {
-      id,
-      nombre,
-      nombre_usuario,
-      email,
-      password,
-      password_repeat,
-      date,
-      telefono,
-      pais,
-      genero
-    };
+    const insertQuery = "INSERT INTO usuario (nombre, nombre_usuario, email, password, fecha_registro, telefono, genero, pais) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
   
-    const dataFilePath = path.join(__dirname, "../usuarios.json");
-  
-    try {
-      let usuarios = []; // Inicializamos usuarios como un array vacío
-  
-      if (fs.existsSync(dataFilePath)) {
-        usuarios = JSON.parse(fs.readFileSync(dataFilePath, "utf-8"));
-      }
-  
-      usuarios.push(registrarNuevo);
-  
-      fs.writeFileSync(dataFilePath, JSON.stringify(usuarios, null, 2), "utf-8");
-  
-      // Guardar el usuario en la base de datos MySQL
-      const insertQuery = "INSERT INTO usuario (id, nombre, nombre_usuario, email, password, date, telefono, genero) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-  
-      connection.query(
-        insertQuery,
-        [id, nombre,nombre_usuario, email, password, date, telefono, genero],
-        (error, results) => {
-          if (error) {
-            console.error("Error al agregar el nuevo usuario en la base de datos:", error);
-            res.status(500).json({ error: "Error al agregar el nuevo usuario en la base de datos." });
-          } else {
-            res.send("Nuevo usuario agregado con éxito");
-          }
+    connection.query(
+      insertQuery,
+      [nombre, nombre_usuario, email, password, date, telefono, genero, pais],
+      (error, results) => {
+        if (error) {
+          console.error("Error al agregar el nuevo usuario en la base de datos:", error);
+          res.status(500).json({ error: "Error al agregar el nuevo usuario en la base de datos." });
+        } else {
+          res.send("Nuevo usuario agregado con éxito");
         }
-      );
-    } catch (error) {
-      console.error("Error al agregar el nuevo usuario:", error);
-      res.status(500).json({ error: "Error al agregar el nuevo usuario." });
-    }
+      }
+    );
   };
 
   //encontrar por id 

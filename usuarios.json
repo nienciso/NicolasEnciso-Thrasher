@@ -10,5 +10,16 @@
     "telefono": "092969230",
     "pais": "pais",
     "genero": "on"
+  },
+  {
+    "nombre": "Nicolás",
+    "nombre_usuario": "Nicolas Enciso",
+    "email": "nienciso2@gmail.com",
+    "password": "123123",
+    "password_repeat": "123123",
+    "date": "2023-10-01",
+    "telefono": "092969230",
+    "pais": "pais",
+    "genero": "on"
   }
 ]

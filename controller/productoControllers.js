@@ -22,7 +22,7 @@ function renderProducto (req,res){
   
     // Convierte la imagen a un Buffer
     const imagen = req.file ? req.file.buffer : null;
-  
+   
     const values = [nombre, descripcion, categoria, precio, imagen];
   
     // Inserta el nuevo producto en la base de datos
@@ -184,23 +184,22 @@ function actualizarProducto(req, res) {
         return;
       }
   
-      // Crea un nuevo array con los productos y su URL de imagen
+      // Mapea los resultados a un formato JSON adecuado
       const productos = results.map((producto) => {
-        const imagenUrl = producto.imagen ? `data:image/png;base64,${producto.imagen.toString("base64")}` : '';
         return {
           id: producto.id,
           nombre: producto.nombre,
           descripcion: producto.descripcion,
-          categoria: producto.categoria_id,
+          categoria: producto.categoria_nombre, // Utiliza el alias definido en la consulta SQL
           precio: producto.precio,
-          imagen: imagenUrl,
+          // Aquí puedes incluir más campos si es necesario
         };
       });
   
-      res.render('index', { productos });
+      // Devuelve los productos en formato JSON
+      res.json({ productos });
     });
   };
-
 
    const getProductosByCategoria = (req, res) => {
     const categoria_id = req.params.categoria_id;
@@ -213,36 +212,7 @@ function actualizarProducto(req, res) {
     });
   };
    
-//add cart
 
-const addToCart = async (req, res) => {
-  const id = req.params.id; // Obtenemos el ID del producto que se desea agregar al carrito
-
-  try {
-    // Buscamos el producto en la base de datos por su ID
-    const producto = await Producto.findById(id);
-
-    if (!producto) {
-      // Si no encontramos el producto, devolvemos un error 404
-      return res.sendStatus(404);
-    }
-
-    // Verificamos si el producto está en el carrito
-    if (!req.session.cart[id]) {
-      req.session.cart[id] = 1;
-    } else {
-      req.session.cart[id]++;
-    }
-
-    // Redirigimos al usuario a la página del producto
-    res.redirect(`/productos/${id}`);
-
-  } catch (err) {
-    console.log(err);
-    // En caso de error, devolvemos un error 500
-    res.sendStatus(500);
-  }
-};
 
 
   module.exports = {
@@ -253,5 +223,4 @@ const addToCart = async (req, res) => {
     eliminarProducto,
     getAllProductos,
     getProductosByCategoria,
-    addToCart
 };
