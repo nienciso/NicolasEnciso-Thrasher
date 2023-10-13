@@ -1,0 +1,18 @@
+<head>
+    <title>Lista de Usuarios</title>
+  </head>
+  <body>
+    <h1>Lista de Usuarios</h1>
+    <ul>
+      <% usuarios.forEach(function(usuario) { %>
+        <li>
+          <h2><%= usuario.nombre %></h2>
+          <p><%= usuario.imagenes %></p>
+          <p> <%= usuario.email %></p>
+          <p><%= usuario.password %></p>
+          <p><%= usuario.rol %></p>    
+          <a href="/productos/productos/<%= productos.id %>" class="btn btn-primary">Editar</a>
+          <a href="#" onclick="eliminarUsuario(<%= usuario.id %>); return false;" class="btn btn-primary">Eliminar</a>
+        </li>
+      <% }); %>
+    </ul>
