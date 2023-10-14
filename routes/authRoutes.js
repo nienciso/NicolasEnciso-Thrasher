@@ -1,4 +1,5 @@
 const connection = require('../db');
+const bcrypt = require('bcrypt');
 
 function checkSession(req, res) {
     if (req.session.user) {
