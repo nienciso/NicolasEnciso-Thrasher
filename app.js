@@ -2,12 +2,15 @@ const express = require('express');
 const indexRoutes = require("./routes/indexRoutes");
 const usuariosRoutes = require("./routes/usuariosRoutes");
 const productosRoutes = require("./routes/productosRoutes");
+const {login, checkSession, logout} = require('./routes/authRoutes');
 const app = express();
 const PORT = 3000;
 const connection = require('./db')
 const path = require("path");
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
 
 app.use(cors());
 app.set("view engine", "ejs");
@@ -25,24 +28,45 @@ app.get('/', function(req, res) {
     res.sendFile('/controller/cartControllers.js');
   });
 
+  app.use(cookieParser());
+  app.use(session({
+    secret: 'Password',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      secure: false, 
+      httpOnly: true, 
+    },
+  }));
+
+
 app.use("/", indexRoutes);
 app.use("/usuarios", usuariosRoutes);
 app.use("/productos", productosRoutes);
 
 app.use("/admin", require("./routes/adminRoutes"));
 ///
+
+app.get('/validate-session', checkSession);
+
+// Ruta para iniciar sesión
+app.post('/login', login);
+
+// Ruta para cerrar sesión
+app.get('/logout', logout);
+
+
 app.use(bodyParser.json());
 
-// Ruta para obtener productos
 app.get('/api/productos', (req, res) => {
-  const query = 'SELECT * FROM productos'; // Tu consulta SQL para obtener productos
+  const query = 'SELECT * FROM productos'; 
 
   connection.query(query, (error, results) => {
     if (error) {
       console.error('Error al obtener los productos de la base de datos: ' + error);
       res.status(500).json({ error: 'Error al obtener los productos de la base de datos' });
     } else {
-      // Respondemos con los productos en formato JSON
+     
       res.json(results);
     }
   });
@@ -78,12 +102,18 @@ app.delete('/api/productos/eliminar-producto/:id', (req, res) => {
       }
     });
   });
-///
 
+  ////
+
+
+
+
+
+///cors
 const corsOptions = {
-    origin: 'http://localhost:3001',  // Cambia a tu URL de frontend
+    origin: 'http://localhost:3001',  
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,  // Habilita el intercambio de cookies y credenciales
+    credentials: true,  
   };
   
   app.use(cors(corsOptions));

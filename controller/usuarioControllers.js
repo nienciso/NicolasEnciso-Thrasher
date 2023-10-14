@@ -15,22 +15,39 @@ function renderUsuario (req,res){
   
   const registrarUsuario = (req, res) => {
     const { nombre, nombre_usuario, email, password, date, telefono, pais, genero } = req.body;
-  
-    const insertQuery = "INSERT INTO usuario (nombre, nombre_usuario, email, password, fecha_registro, telefono, genero, pais) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-  
-    connection.query(
-      insertQuery,
-      [nombre, nombre_usuario, email, password, date, telefono, genero, pais],
-      (error, results) => {
-        if (error) {
-          console.error("Error al agregar el nuevo usuario en la base de datos:", error);
-          res.status(500).json({ error: "Error al agregar el nuevo usuario en la base de datos." });
+
+    const saltRounds = 10; // Define el número de saltos (rounds) para el algoritmo de hash
+
+    // Genera un salt y luego encripta la contraseña
+    bcrypt.genSalt(saltRounds, (err, salt) => {
+        if (err) {
+            console.error('Error al generar el salt:', err);
+            res.status(500).json({ error: 'Error al registrar el nuevo usuario' });
         } else {
-          res.send("Nuevo usuario agregado con éxito");
+            bcrypt.hash(password, salt, (err, hashedPassword) => {
+                if (err) {
+                    console.error('Error al encriptar la contraseña:', err);
+                    res.status(500).json({ error: 'Error al registrar el nuevo usuario' });
+                } else {
+                    const insertQuery = 'INSERT INTO usuario (nombre, nombre_usuario, email, password, fecha_registro, telefono, genero, pais, rol) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1)';
+
+                    connection.query(
+                        insertQuery,
+                        [nombre, nombre_usuario, email, hashedPassword, date, telefono, genero, pais], // Usar la contraseña encriptada
+                        (error, results) => {
+                            if (error) {
+                                console.error('Error al agregar el nuevo usuario en la base de datos:', error);
+                                res.status(500).json({ error: 'Error al registrar el nuevo usuario' });
+                            } else {
+                                res.send('Nuevo usuario agregado con éxito');
+                            }
+                        }
+                    );
+                }
+            });
         }
-      }
-    );
-  };
+    });
+};
 
   //encontrar por id 
   async function obtenerUsuarioPorId(req, res) {
