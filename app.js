@@ -48,6 +48,22 @@ app.get('/api/productos', (req, res) => {
   });
 });
 
+app.get('/api/productos/detalles/:id', (req, res) => {
+    const productId = req.params.id;
+    const query = 'SELECT * FROM productos WHERE id = ?';
+  
+    connection.query(query, [productId], (error, result) => {
+      if (error) {
+        console.error('Error al obtener los detalles del producto de la base de datos: ' + error);
+        res.status(500).json({ error: 'Error al obtener los detalles del producto de la base de datos' });
+      } else if (result.length === 0) {
+        res.status(404).json({ error: 'Producto no encontrado' });
+      } else {
+        res.json(result[0]);
+      }
+    });
+  });
+
 app.delete('/api/productos/eliminar-producto/:id', (req, res) => {
     const productIdToDelete = req.params.id;
   
