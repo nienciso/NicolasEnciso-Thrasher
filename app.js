@@ -2,7 +2,7 @@ const express = require('express');
 const indexRoutes = require("./routes/indexRoutes");
 const usuariosRoutes = require("./routes/usuariosRoutes");
 const productosRoutes = require("./routes/productosRoutes");
-const {login, checkSession, logout} = require('./routes/authRoutes');
+const authRoutes = require ("./routes/authRoutes")
 const app = express();
 const PORT = 3000;
 const connection = require('./db')
@@ -43,17 +43,9 @@ app.get('/', function(req, res) {
 app.use("/", indexRoutes);
 app.use("/usuarios", usuariosRoutes);
 app.use("/productos", productosRoutes);
-
+app.use("/auth", authRoutes);
 app.use("/admin", require("./routes/adminRoutes"));
 ///
-
-app.get('/validate-session', checkSession);
-
-// Ruta para iniciar sesión
-app.post('/login', login);
-
-// Ruta para cerrar sesión
-app.get('/logout', logout);
 
 
 app.use(bodyParser.json());
@@ -102,12 +94,6 @@ app.delete('/api/productos/eliminar-producto/:id', (req, res) => {
       }
     });
   });
-
-  ////
-
-
-
-
 
 ///cors
 const corsOptions = {
