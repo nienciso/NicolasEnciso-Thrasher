@@ -138,36 +138,20 @@ function actualizarProducto(req, res) {
    
   function eliminarProducto(req, res) {
     try {
-      const dataFilePath = path.join(__dirname, "../productos.json");
-      const productIdToDelete = parseInt(req.params.id); 
+      const productIdToDelete = parseInt(req.params.id);
   
-    
-      const productos = JSON.parse(fs.readFileSync(dataFilePath, 'utf8'));
+      const deleteQuery = "DELETE FROM productos WHERE id = ?";
   
-    
-      const productosIndex = productos.findIndex(producto => producto.id === productIdToDelete);
-  
-      if (productosIndex !== -1) {
-        
-        productos.splice(productosIndex, 1);
-  
-        
-        fs.writeFileSync(dataFilePath, JSON.stringify(productos, null, 2));
-  
-        
-        const deleteQuery = "DELETE FROM productos WHERE id = ?";
-  
-        connection.query(deleteQuery, [productIdToDelete], (error, results) => {
-          if (error) {
-            console.error('Error al eliminar el producto de la base de datos:', error);
-            res.status(500).json({ error: 'Error al eliminar el producto de la base de datos.' });
-          } else {
-            res.status(200).json({ message: 'Producto eliminado exitosamente.' });
-          }
-        });
-      } else {
-        res.status(404).json({ error: 'Producto no encontrado.' });
-      }
+      connection.query(deleteQuery, [productIdToDelete], (error, results) => {
+        if (error) {
+          console.error('Error al eliminar el producto de la base de datos:', error);
+          res.status(500).json({ error: 'Error al eliminar el producto de la base de datos.' });
+        } else if (results.affectedRows === 0) {
+          res.status(404).json({ error: 'Producto no encontrado.' });
+        } else {
+          res.status(200).json({ message: 'Producto eliminado exitosamente.' });
+        }
+      });
     } catch (error) {
       console.error('Error al eliminar el producto:', error);
       res.status(500).json({ error: 'Error al eliminar el producto.' });
@@ -184,19 +168,18 @@ function actualizarProducto(req, res) {
         return;
       }
   
-      // Mapea los resultados a un formato JSON adecuado
       const productos = results.map((producto) => {
         return {
           id: producto.id,
           nombre: producto.nombre,
           descripcion: producto.descripcion,
-          categoria: producto.categoria_nombre, // Utiliza el alias definido en la consulta SQL
+          categoria: producto.categoria_nombre, 
           precio: producto.precio,
-          // Aquí puedes incluir más campos si es necesario
+         
         };
       });
   
-      // Devuelve los productos en formato JSON
+    
       res.json({ productos });
     });
   };

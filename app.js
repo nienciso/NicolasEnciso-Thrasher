@@ -80,20 +80,6 @@ app.get('/api/productos/detalles/:id', (req, res) => {
     });
   });
 
-app.delete('/api/productos/eliminar-producto/:id', (req, res) => {
-    const productIdToDelete = req.params.id;
-  
-    const deleteQuery = 'DELETE FROM productos WHERE id = ?';
-  
-    connection.query(deleteQuery, [productIdToDelete], (error, results) => {
-      if (error) {
-        console.error('Error al eliminar el producto de la base de datos:', error);
-        res.status(500).json({ error: 'Error al eliminar el producto de la base de datos.' });
-      } else {
-        res.status(200).json({ message: 'Producto eliminado exitosamente.' });
-      }
-    });
-  });
 
 ///cors
 const corsOptions = {
